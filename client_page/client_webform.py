@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-INTERNAL_API_URL = os.environ.get("INTERNAL_API_URL")
+API_BASE = "http://backend_app:8000"
 
 def valid_domain(video_url):
     domain = urlparse(video_url).netloc
@@ -32,7 +32,7 @@ def submit_form():
             else:
                 domain = valid_domain(video_url)
                 if domain:
-                    res = requests.post(f"{INTERNAL_API_URL}/submit", json={"url": video_url, "domain": domain})
+                    res = requests.post(f"{API_BASE}/submit", json={"url": video_url, "domain": domain})
                     if res.status_code == 200:
                         st.success("Video submitted!")
                     else:

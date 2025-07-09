@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from gevent.pywsgi import WSGIServer
 import uuid
 
 app = Flask(__name__)
@@ -52,4 +53,8 @@ def consume_next_video():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=PORT)
+    # Debug/Development
+    # app.run(debug=True, host="0.0.0.0", port=PORT)
+    # Production
+    http_server = WSGIServer(('', PORT), app)
+    http_server.serve_forever()

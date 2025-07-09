@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend_app:
+    build: .
+    ports:
+      - "8000:8000"
+    command: python /app/backend/app.py
+  client_page:
+    build: .
+    ports: 
+      - "8501:8501"
+    command: streamlit run client_page/client_webform.py --server.port=8501
+  manager_page:
+    build: .
+    ports:
+      - "8502:8502"
+    command: streamlit run manager_page/manager_page.py --server.port=8502

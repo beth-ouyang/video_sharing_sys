@@ -8,10 +8,10 @@ import json
 load_dotenv(override=True)
 
 
-INTERNAL_API_URL = os.environ.get("INTERNAL_API_URL")
+API_BASE = "http://backend_app:8000"
 
 def load_queue():
-    response = requests.get(f"{INTERNAL_API_URL}/queue")
+    response = requests.get(f"{API_BASE}/queue")
     queue = response.json()
     return queue
 
@@ -44,7 +44,7 @@ def main():
     queue = load_queue()
 
     if queue:
-        next_video_res = requests.get(f"{INTERNAL_API_URL}/next").json()
+        next_video_res = requests.get(f"{API_BASE}/next").json()
         next_video_url = next_video_res["url"]
         domain = next_video_res["domain"]
 
@@ -66,7 +66,7 @@ def main():
 
             with col2:
                 if st.button("❌", key=f"del-{item['id']}"):
-                    requests.delete(f"{INTERNAL_API_URL}/queue/{item['id']}")
+                    requests.delete(f"{API_BASE}/queue/{item['id']}")
                     st.rerun()
     else:
         st.info("Queue is empty.")
