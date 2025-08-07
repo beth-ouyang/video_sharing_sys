@@ -1,8 +1,8 @@
-# video_sharing_sys
+# Video Sharing System
 
 ## Usage
 
-- Local run
+### Local run
 1. The main backend app:
 ```bash
 python backend/app.py
@@ -11,9 +11,15 @@ python backend/app.py
 ```bach
 streamlit run client_page/client_webform.py
 ```
-3. 
+3. The manager's page, which can see all videos in queue, and manege  it.
+```bash
+streamlit run manager_page/manager_page.py
 
-- Docker (which does not support Google Credential for manager page)
+```
+
+
+### Docker
+which does not support Google Credential for manager page
 ```bash
  docker-compose up --build
 ```
