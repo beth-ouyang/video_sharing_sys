@@ -10,12 +10,12 @@ load_dotenv(override=True)
 
 API_BASE = "http://backend_app:8000"
 
-def load_queue():
+def __load_queue():
     response = requests.get(f"{API_BASE}/queue")
     queue = response.json()
     return queue
 
-def get_video_info(video_url, domain):
+def __get_video_info(video_url, domain):
     if domain in ["www.youtube.com", "youtu.be"]:
         api_url = f"https://www.youtube.com/oembed?url={video_url}&format=json"
         res = requests.get(api_url)
@@ -36,12 +36,17 @@ def get_video_info(video_url, domain):
     else:
         return "**Caution:** Cannot get video info!"
 
-def main():
+def login_page():
+    st.header("This app is private.")
+    st.subheader("Please log in.")
+    st.button("Log in with Google", on_click=st.login)
+
+def manager_page():
     st.set_page_config(page_title="Manage Video Queue")
     # st.title("Manage Video Queue")
 
     # Load queue
-    queue = load_queue()
+    queue = __load_queue()
 
     if queue:
         next_video_res = requests.get(f"{API_BASE}/next").json()
@@ -58,7 +63,7 @@ def main():
             col1, col2 = st.columns([5, 1])
 
             with col1:
-                title = get_video_info(item["url"], item["domain"])
+                title = __get_video_info(item["url"], item["domain"])
                 if title:
                     st.markdown(f"{i+1}. [{title}]({item["url"]})")
                 else:
@@ -72,4 +77,8 @@ def main():
         st.info("Queue is empty.")
 
 if __name__ == "__main__":
-    main()
+    # if not st.user.is_logged_in:
+    #     login_page()
+    # else:
+    #     manager_page()
+    manager_page()
