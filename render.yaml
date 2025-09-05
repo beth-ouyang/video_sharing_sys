@@ -18,7 +18,7 @@ services:
       - key: API_BASE
         value: https://api-hw8n.onrender.com
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run client_page/client_webform.py --server.port=8501
+    startCommand: streamlit run client_page/client_webform.py
 
   - type: web
     name: manager-page
@@ -30,7 +30,7 @@ services:
       - key: AUTH_IP_ADDR
         sync: false
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run manager_page/manager_page.py --server.port=8502
+    startCommand: streamlit run manager_page/manager_page.py
 
 
 version: "1"

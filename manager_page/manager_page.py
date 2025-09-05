@@ -7,7 +7,7 @@ import json
 
 load_dotenv(override=True)
 
-API_BASE = os.getenv["API_BASE"]
+API_BASE = os.environ["API_BASE"]
 
 def __load_queue():
     response = requests.get(f"{API_BASE}/queue")
