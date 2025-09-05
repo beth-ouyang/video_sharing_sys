@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: backend-app
+    env: docker
+    plan: free  # or starter, depending on your plan
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+    startCommand: python backend/app.py
+    healthCheckPath: /health  # optional
+    ports:
+      - 8000
+
+  - type: web
+    name: client-page
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8501
+    startCommand: streamlit run client_page/client_webform.py --server.port=8501
+    ports:
+      - 8501
+
+  - type: web
+    name: manager-page
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8502
+    envVars:
+      - key: AUTH_IP_ADDR
+        sync: false
+    startCommand: streamlit run manager_page/manager_page.py --server.port=8502
+    ports:
+      - 8502
+
+version: "1"
