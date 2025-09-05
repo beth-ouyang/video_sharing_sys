@@ -8,8 +8,8 @@ app = Flask(__name__)
 CORS(app)
 
 QUEUE = []
-APP_PORT = os.environ["APP_PORT"]
 
+APP_PORT = int(os.environ.get("PORT", 8000))
 
 # Helper function to find item by ID
 def find_by_id(video_id):

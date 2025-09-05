@@ -7,8 +7,7 @@ import json
 
 load_dotenv(override=True)
 
-APP_PORT = os.environ["APP_PORT"]
-API_BASE = "http://api:" + APP_PORT
+API_BASE = os.getenv["API_BASE"]
 
 def __load_queue():
     response = requests.get(f"{API_BASE}/queue")

@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-APP_PORT = os.environ["APP_PORT"]
-API_BASE = "http://api:" + APP_PORT
+API_BASE = os.getenv["API_BASE"]
 
 def valid_domain(video_url):
     domain = urlparse(video_url).netloc

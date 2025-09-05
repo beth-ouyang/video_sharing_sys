@@ -5,7 +5,7 @@ services:
     plan: free
     envVars:
       - key: APP_PORT
-        value: 10000
+        value: 8000
     buildCommand: pip install -r requirements.txt
     startCommand: python backend/app.py
 
@@ -15,8 +15,8 @@ services:
     env: python
     plan: free
     envVars:
-      - key: APP_PORT
-        value: 10000
+      - key: API_BASE
+        value: https://api-hw8n.onrender.com
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run client_page/client_webform.py --server.port=8501
 
@@ -25,8 +25,8 @@ services:
     env: python
     plan: free
     envVars:
-      - key: APP_PORT
-        value: 10000
+      - key: API_BASE
+        value: https://api-hw8n.onrender.com
       - key: AUTH_IP_ADDR
         sync: false
     buildCommand: pip install -r requirements.txt
