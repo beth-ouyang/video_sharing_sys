@@ -2,10 +2,9 @@ services:
   - type: worker
     name: backend-app
     env: python
-    plan: free  # or starter, depending on your plan
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python backend/app.py
-    healthCheckPath: /health  # optional
 
 
   - type: web
