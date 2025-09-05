@@ -21,5 +21,5 @@ streamlit run manager_page/manager_page.py
 ### Docker
 which does not support Google Credential for manager page
 ```bash
- docker-compose up --build
+ docker compose up --build
 ```

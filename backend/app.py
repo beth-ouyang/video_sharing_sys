@@ -55,6 +55,7 @@ def consume_next_video():
 if __name__ == "__main__":
     # Debug/Development
     # app.run(debug=True, host="0.0.0.0", port=PORT)
+
     # Production
     http_server = WSGIServer(('', PORT), app)
     http_server.serve_forever()

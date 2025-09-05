@@ -36,10 +36,10 @@ def __get_video_info(video_url, domain):
     else:
         return "**Caution:** Cannot get video info!"
 
-def login_page():
-    st.header("This app is private.")
-    st.subheader("Please log in.")
-    st.button("Log in with Google", on_click=st.login)
+def block_page():
+    st.header("Sorry!")
+    st.subheader("This app is private. Please don't hack me :(")
+
 
 def manager_page():
     st.set_page_config(page_title="Manage Video Queue")
@@ -77,8 +77,11 @@ def manager_page():
         st.info("Queue is empty.")
 
 if __name__ == "__main__":
-    # if not st.user.is_logged_in:
-    #     login_page()
-    # else:
-    #     manager_page()
-    manager_page()
+    user_ip = st.context.ip_address
+    st.write(user_ip)
+
+    # ip_address is expected to be None when running locally
+    if user_ip and not user_ip in os.environ["AUTH_IP_ADDR"]:
+        block_page()
+    else:
+        manager_page()
