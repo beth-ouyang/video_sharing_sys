@@ -1,8 +1,11 @@
 services:
-  - type: worker
-    name: backend-app
+  - type: web
+    name: api
     env: python
-    plan: Starter
+    plan: free
+    envVars:
+      - key: APP_PORT
+        value: 10000
     buildCommand: pip install -r requirements.txt
     startCommand: python backend/app.py
 
